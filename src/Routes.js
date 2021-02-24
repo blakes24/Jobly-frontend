@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import Navbar from './Navbar'
+import Home from './Home'
+import List from './List'
+import CompanyDetail from './CompanyDetail'
+import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
+import Profile from './Profile'
 
 const Routes = () => {
 	return (
