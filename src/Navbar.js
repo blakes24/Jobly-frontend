@@ -7,9 +7,6 @@ const NavBar = () => (
       Jobly
     </Navbar.Brand>
     <Nav className="ml-auto">
-      <Nav.Link as={NavLink} to="/">
-        Home
-      </Nav.Link>
       <Nav.Link as={NavLink} to="/companies">
         Companies
       </Nav.Link>

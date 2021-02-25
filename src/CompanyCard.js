@@ -1,14 +1,17 @@
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const CompanyCard = ({ item }) => {
+const CompanyCard = ({ name, description, logoUrl, handle }) => {
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>
-          {item.name} <img src={item.logoUrl} alt="logo" />
-        </Card.Title>
-        <Card.Text>{item.description}</Card.Text>
-      </Card.Body>
+    <Card className="CompanyCard">
+      <Link to={`/companies/${handle}`}>
+        <Card.Body>
+          <Card.Title>
+            {name} <img src={logoUrl} alt="logo" />
+          </Card.Title>
+          <Card.Text>{description}</Card.Text>
+        </Card.Body>
+      </Link>
     </Card>
   );
 };
