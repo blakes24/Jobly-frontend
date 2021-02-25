@@ -47,7 +47,7 @@ class JoblyApi {
   /** Get a list of jobs with optional search params. */
 
   static async getJobs(params) {
-    let res = await this.request(`jobs`, params);
+    let res = await this.request(`jobs`, { title: params });
     return res.jobs;
   }
 
