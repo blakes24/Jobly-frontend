@@ -1,11 +1,11 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import UserContext from './UserContext';
 
-const NavBar = () => (
-  <Navbar bg="dark" variant="dark">
-    <Navbar.Brand as={NavLink} to="/">
-      Jobly
-    </Navbar.Brand>
+const NavBar = ({ logout }) => {
+  const user = useContext(UserContext);
+  const loggedIn = (
     <Nav className="ml-auto">
       <Nav.Link as={NavLink} to="/companies">
         Companies
@@ -16,6 +16,14 @@ const NavBar = () => (
       <Nav.Link as={NavLink} to="/profile">
         Profile
       </Nav.Link>
+      <Nav.Link as={Link} to="/" onClick={logout}>
+        Log out {user && user.username}
+      </Nav.Link>
+    </Nav>
+  );
+
+  const loggedOut = (
+    <Nav className="ml-auto">
       <Nav.Link as={NavLink} to="/login">
         Log In
       </Nav.Link>
@@ -23,7 +31,16 @@ const NavBar = () => (
         Sign Up
       </Nav.Link>
     </Nav>
-  </Navbar>
-);
+  );
+
+  return (
+    <Navbar bg="dark" variant="dark">
+      <Navbar.Brand as={NavLink} to="/">
+        Jobly
+      </Navbar.Brand>
+      {user ? loggedIn : loggedOut}
+    </Navbar>
+  );
+};
 
 export default NavBar;

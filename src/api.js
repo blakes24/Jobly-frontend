@@ -76,6 +76,6 @@ class JoblyApi {
 }
 
 // for now, put token ("testuser" / "password") on class
-JoblyApi.token = process.env.REACT_APP_TOKEN;
+// JoblyApi.token = process.env.REACT_APP_TOKEN;
 
 export default JoblyApi;
