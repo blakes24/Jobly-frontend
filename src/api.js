@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 
 /** API Class.
  *
@@ -12,21 +12,19 @@ class JoblyApi {
   // the token for interacting with the API will be stored here.
   static token;
 
-  static async request(endpoint, data = {}, method = "get") {
-    console.debug("API Call:", endpoint, data, method);
+  static async request(endpoint, data = {}, method = 'get') {
+    console.debug('API Call:', endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
-    const params = (method === "get")
-        ? data
-        : {};
+    const params = method === 'get' ? data : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
-      console.error("API Error:", err.response);
+      console.error('API Error:', err.response);
       let message = err.response.data.error.message;
-      throw Array.isArray(message) ? message : [message];
+      throw Array.isArray(message) ? message : [ message ];
     }
   }
 
@@ -35,7 +33,7 @@ class JoblyApi {
   /** Get a list of companies with optional search params. */
 
   static async getCompanies(params) {
-    let res = await this.request(`companies`, params);
+    let res = await this.request(`companies`, { name: params });
     return res.companies;
   }
 
@@ -57,7 +55,7 @@ class JoblyApi {
 
   static async register(userData) {
     let res = await this.request(`auth/register`, userData, 'post');
-    this.token = res.token
+    this.token = res.token;
     return res.token;
   }
 
@@ -65,7 +63,7 @@ class JoblyApi {
 
   static async login(userData) {
     let res = await this.request(`auth/token`, userData, 'post');
-    this.token = res.token
+    this.token = res.token;
     return res.token;
   }
 
@@ -75,11 +73,9 @@ class JoblyApi {
     let res = await this.request(`users/${username}`);
     return res.user;
   }
-
 }
 
-
 // for now, put token ("testuser" / "password") on class
-JoblyApi.token = process.env.REACT_APP_TOKEN
+JoblyApi.token = process.env.REACT_APP_TOKEN;
 
-export default JoblyApi
+export default JoblyApi;

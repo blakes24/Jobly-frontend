@@ -1,7 +1,9 @@
+// import { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Navbar from './Navbar';
 import Home from './Home';
-import List from './List';
+import JobList from './JobList';
+import CompanyList from './CompanyList';
 import CompanyDetail from './CompanyDetail';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
@@ -16,13 +18,13 @@ const Routes = () => {
           <Home />
         </Route>
         <Route exact path="/companies">
-          <List />
+          <CompanyList />
         </Route>
         <Route exact path="/companies/:handle">
           <CompanyDetail />
         </Route>
         <Route exact path="/jobs">
-          <List />
+          <JobList />
         </Route>
         <Route exact path="/login">
           <LoginForm />
