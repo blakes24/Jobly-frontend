@@ -23,8 +23,12 @@ const LoginForm = ({ login }) => {
     },
     validate,
     onSubmit      : async (values) => {
-      await login(values);
-      history.push('/');
+      try {
+        await login(values);
+        history.push('/');
+      } catch (err) {
+        formik.errors.password = err;
+      }
     }
   });
 

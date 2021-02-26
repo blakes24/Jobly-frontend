@@ -24,10 +24,14 @@ const Routes = () => {
         if (!token) {
           setUser(null);
         } else {
-          JoblyApi.token = token;
-          const username = jwt_decode(token).username;
-          const user = await JoblyApi.getUser(username);
-          setUser(user);
+          try {
+            JoblyApi.token = token;
+            const username = jwt_decode(token).username;
+            const user = await JoblyApi.getUser(username);
+            setUser(user);
+          } catch (err) {
+            console.error(err);
+          }
         }
       }
       getUser();
@@ -48,6 +52,12 @@ const Routes = () => {
   function logout() {
     JoblyApi.token = null;
     setToken(null);
+  }
+
+  async function update(data) {
+    const token = await JoblyApi.login({ username: data.username, password: data.password });
+    await JoblyApi.updateUser(data);
+    setToken(token);
   }
 
   return (
@@ -73,7 +83,7 @@ const Routes = () => {
           <SignupForm register={register} />
         </Route>
         <Route exact path="/profile">
-          {user ? <Profile /> : <Redirect to="/" />}
+          {user ? <Profile update={update} /> : <Redirect to="/" />}
         </Route>
         <Route>
           <p>Page not found.</p>
