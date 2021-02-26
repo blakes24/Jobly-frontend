@@ -23,7 +23,7 @@ class JoblyApi {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error('API Error:', err.response);
-      let message = err.response.data.error.message;
+      let message = err.response ? err.response.data.error.message : 'Server error: try again later';
       throw Array.isArray(message) ? message : [ message ];
     }
   }
@@ -71,6 +71,16 @@ class JoblyApi {
 
   static async getUser(username) {
     let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
+  /** Update user details. */
+
+  static async updateUser(userData) {
+    const username = userData.username;
+    const data = { ...userData };
+    delete data.username;
+    let res = await this.request(`users/${username}`, data, 'patch');
     return res.user;
   }
 }

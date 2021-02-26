@@ -34,7 +34,16 @@ const CompanyList = () => {
   // Filter list based on search term
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    filter(formData.search);
+    // if search is empty reset and get all companies
+    if (formData.search.trim().length < 1) {
+      setFormData((formData) => ({
+        ...formData,
+        search : ''
+      }));
+      filter();
+    } else {
+      filter(formData.search);
+    }
   };
 
   return (
@@ -46,6 +55,7 @@ const CompanyList = () => {
           name="search"
           placeholder="Enter search term"
           type="text"
+          value={formData.search}
           onChange={handleChange}
         />
         <Button type="submit" className="my-2">
@@ -54,7 +64,7 @@ const CompanyList = () => {
       </Form>
       {isLoading ? (
         <h2>Loading...</h2>
-      ) : (
+      ) : list.length ? (
         list.map((company) => (
           <CompanyCard
             name={company.name}
@@ -64,6 +74,8 @@ const CompanyList = () => {
             key={company.handle}
           />
         ))
+      ) : (
+        <p>No results found</p>
       )}
     </div>
   );

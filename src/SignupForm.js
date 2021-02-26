@@ -51,8 +51,12 @@ const SignupForm = ({ register }) => {
     },
     validate,
     onSubmit      : async (values) => {
-      await register(values);
-      history.push('/');
+      try {
+        await register(values);
+        history.push('/');
+      } catch (err) {
+        formik.errors.username = err;
+      }
     }
   });
   return (

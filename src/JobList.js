@@ -34,7 +34,16 @@ const JobList = () => {
   // Filter list based on search term
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    filter(formData.search);
+    // if search is empty reset and get all jobs
+    if (formData.search.trim().length < 1) {
+      setFormData((formData) => ({
+        ...formData,
+        search : ''
+      }));
+      filter();
+    } else {
+      filter(formData.search);
+    }
   };
 
   return (
@@ -46,6 +55,7 @@ const JobList = () => {
           name="search"
           placeholder="Enter search term"
           type="text"
+          value={formData.search}
           onChange={handleChange}
         />
         <Button type="submit" className="my-2">
@@ -54,10 +64,12 @@ const JobList = () => {
       </Form>
       {isLoading ? (
         <h2>Loading...</h2>
-      ) : (
+      ) : list.length ? (
         list.map((job) => (
           <JobCard company={job.companyName} title={job.title} salary={job.salary} equity={job.equity} key={job.id} />
         ))
+      ) : (
+        <p>No results found</p>
       )}
     </div>
   );
