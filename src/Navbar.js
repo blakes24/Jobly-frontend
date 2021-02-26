@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import UserContext from './UserContext';
 
 const NavBar = ({ logout }) => {
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const loggedIn = (
     <Nav className="ml-auto">
       <Nav.Link as={NavLink} to="/companies">
