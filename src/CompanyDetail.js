@@ -30,7 +30,7 @@ const CompanyDetail = () => {
           <p>{company.description}</p>
           <div>
             {company.jobs.map((job) => (
-              <JobCard title={job.title} salary={job.salary} equity={job.equity} key={job.id} />
+              <JobCard title={job.title} salary={job.salary} equity={job.equity} id={job.id} key={job.id} />
             ))}
           </div>
         </div>

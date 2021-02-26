@@ -60,8 +60,14 @@ const Routes = () => {
     setToken(token);
   }
 
+  async function apply(id) {
+    const job = await JoblyApi.applyToJob(user.username, id);
+    user.applications.push(job);
+    setUser({ ...user });
+  }
+
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={{ user, apply }}>
       <Navbar logout={logout} />
       <Switch>
         <Route exact path="/">

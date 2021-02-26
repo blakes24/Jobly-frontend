@@ -66,7 +66,14 @@ const JobList = () => {
         <h2>Loading...</h2>
       ) : list.length ? (
         list.map((job) => (
-          <JobCard company={job.companyName} title={job.title} salary={job.salary} equity={job.equity} key={job.id} />
+          <JobCard
+            company={job.companyName}
+            title={job.title}
+            salary={job.salary}
+            equity={job.equity}
+            id={job.id}
+            key={job.id}
+          />
         ))
       ) : (
         <p>No results found</p>

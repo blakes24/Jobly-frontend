@@ -32,7 +32,7 @@ const validate = (values) => {
 };
 
 const Profile = ({ update }) => {
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const formik = useFormik({
     initialValues : {
@@ -47,7 +47,6 @@ const Profile = ({ update }) => {
       try {
         await update(values);
       } catch (err) {
-        console.log(err);
         formik.errors.password = err;
       }
     }
