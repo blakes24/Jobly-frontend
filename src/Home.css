@@ -1,0 +1,13 @@
+.Home {
+  text-align: center;
+  margin-top: 30vh;
+}
+
+.Home h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.Home p {
+  font-size: 18px;
+}

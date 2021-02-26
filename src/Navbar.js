@@ -7,16 +7,16 @@ const NavBar = ({ logout }) => {
   const { user } = useContext(UserContext);
   const loggedIn = (
     <Nav className="ml-auto">
-      <Nav.Link as={NavLink} to="/companies">
+      <Nav.Link as={NavLink} eventKey="1" to="/companies">
         Companies
       </Nav.Link>
-      <Nav.Link as={NavLink} to="/jobs">
+      <Nav.Link as={NavLink} eventKey="2" to="/jobs">
         Jobs
       </Nav.Link>
-      <Nav.Link as={NavLink} to="/profile">
+      <Nav.Link as={NavLink} eventKey="3" to="/profile">
         Profile
       </Nav.Link>
-      <Nav.Link as={Link} to="/" onClick={logout}>
+      <Nav.Link as={Link} to="/" eventKey="4" onClick={logout}>
         Log out {user && user.username}
       </Nav.Link>
     </Nav>
@@ -24,21 +24,24 @@ const NavBar = ({ logout }) => {
 
   const loggedOut = (
     <Nav className="ml-auto">
-      <Nav.Link as={NavLink} to="/login">
+      <Nav.Link as={NavLink} eventKey="5" to="/login">
         Log In
       </Nav.Link>
-      <Nav.Link as={NavLink} to="/signup">
+      <Nav.Link as={NavLink} eventKey="6" to="/signup">
         Sign Up
       </Nav.Link>
     </Nav>
   );
 
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar collapseOnSelect bg="dark" variant="dark" expand="md">
       <Navbar.Brand as={NavLink} to="/">
         Jobly
       </Navbar.Brand>
-      {user ? loggedIn : loggedOut}
+      <Navbar.Toggle aria-controls="navbar-collapse" />
+      <Navbar.Collapse id="navbar-collapse" className="justify-content-end">
+        {user ? loggedIn : loggedOut}
+      </Navbar.Collapse>
     </Navbar>
   );
 };

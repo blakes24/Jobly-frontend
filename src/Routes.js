@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 import Navbar from './Navbar';
 import Home from './Home';
 import JobList from './JobList';
@@ -69,32 +70,34 @@ const Routes = () => {
   return (
     <UserContext.Provider value={{ user, apply }}>
       <Navbar logout={logout} />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/companies">
-          {user ? <CompanyList /> : <Redirect to="/" />}
-        </Route>
-        <Route exact path="/companies/:handle">
-          {user ? <CompanyDetail /> : <Redirect to="/" />}
-        </Route>
-        <Route exact path="/jobs">
-          {user ? <JobList /> : <Redirect to="/" />}
-        </Route>
-        <Route exact path="/login">
-          <LoginForm login={login} />
-        </Route>
-        <Route exact path="/signup">
-          <SignupForm register={register} />
-        </Route>
-        <Route exact path="/profile">
-          {user ? <Profile update={update} /> : <Redirect to="/" />}
-        </Route>
-        <Route>
-          <p>Page not found.</p>
-        </Route>
-      </Switch>
+      <Container>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/companies">
+            {user ? <CompanyList /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/companies/:handle">
+            {user ? <CompanyDetail /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/jobs">
+            {user ? <JobList /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/login">
+            <LoginForm login={login} />
+          </Route>
+          <Route exact path="/signup">
+            <SignupForm register={register} />
+          </Route>
+          <Route exact path="/profile">
+            {user ? <Profile update={update} /> : <Redirect to="/" />}
+          </Route>
+          <Route>
+            <p>Page not found.</p>
+          </Route>
+        </Switch>
+      </Container>
     </UserContext.Provider>
   );
 };
