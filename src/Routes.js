@@ -11,20 +11,23 @@ import Profile from './Profile';
 import JoblyApi from './api';
 import jwt_decode from 'jwt-decode';
 import UserContext from './UserContext';
+import useLocalStorage from './useLocalStorage';
 
 const Routes = () => {
-  const [ token, setToken ] = useState(null);
+  const [ token, setToken ] = useLocalStorage('token', '');
   const [ user, setUser ] = useState(null);
 
   useEffect(
     () => {
       async function getUser() {
         if (!token) {
-          return setUser(null);
+          setUser(null);
+        } else {
+          JoblyApi.token = token;
+          const username = jwt_decode(token).username;
+          const user = await JoblyApi.getUser(username);
+          setUser(user);
         }
-        const username = jwt_decode(token).username;
-        const user = await JoblyApi.getUser(username);
-        setUser(user);
       }
       getUser();
     },
