@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './Navbar';
 import Home from './Home';
 import JobList from './JobList';
@@ -17,6 +17,7 @@ const Routes = () => {
   const [ token, setToken ] = useLocalStorage('token', '');
   const [ user, setUser ] = useState(null);
 
+  // if token is present get user details, if not remove user from state
   useEffect(
     () => {
       async function getUser() {
@@ -57,13 +58,13 @@ const Routes = () => {
           <Home />
         </Route>
         <Route exact path="/companies">
-          <CompanyList />
+          {user ? <CompanyList /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/companies/:handle">
-          <CompanyDetail />
+          {user ? <CompanyDetail /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/jobs">
-          <JobList />
+          {user ? <JobList /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/login">
           <LoginForm login={login} />
@@ -72,7 +73,7 @@ const Routes = () => {
           <SignupForm register={register} />
         </Route>
         <Route exact path="/profile">
-          <Profile />
+          {user ? <Profile /> : <Redirect to="/" />}
         </Route>
         <Route>
           <p>Page not found.</p>
