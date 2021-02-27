@@ -1,0 +1,23 @@
+.JobCard {
+  -webkit-box-shadow: 0px 1px 2px 0px lightgrey;
+  box-shadow: 0px 1px 2px 0px lightgrey;
+  margin: 10px;
+  border-radius: 0;
+}
+
+.JobCard-apply {
+  display: flex;
+  justify-content: space-between;
+}
+
+.JobCard p {
+  font-size: 13px;
+}
+
+@media screen and (max-width: 600px) {
+  .JobCard .card {
+    margin-top: 1rem;
+    box-shadow: none;
+    border: none;
+  }
+}

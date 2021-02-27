@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import JoblyApi from './api';
 import CompanyCard from './CompanyCard';
+import './CompanyList.css';
 
 const CompanyList = () => {
   const [ list, setList ] = useState([]);
@@ -47,8 +48,8 @@ const CompanyList = () => {
   };
 
   return (
-    <div>
-      <Form onSubmit={handleSubmit} inline>
+    <div className="CompanyList">
+      <Form onSubmit={handleSubmit}>
         <Form.Control
           className="my-2"
           id="search"

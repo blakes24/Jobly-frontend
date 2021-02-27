@@ -1,0 +1,16 @@
+.CompanyDetail {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.CompanyDetail-heading {
+  margin: 30px 10px;
+}
+
+.CompanyDetail-heading h1 {
+  font-size: 2rem;
+}
+
+.CompanyDetail-heading p {
+  font-size: 0.9rem;
+}

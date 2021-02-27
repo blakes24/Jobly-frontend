@@ -2,6 +2,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import React, { useContext } from 'react';
 import UserContext from './UserContext';
+import './NavBar.css';
 
 const NavBar = ({ logout }) => {
   const { user } = useContext(UserContext);
@@ -34,7 +35,7 @@ const NavBar = ({ logout }) => {
   );
 
   return (
-    <Navbar collapseOnSelect bg="dark" variant="dark" expand="md">
+    <Navbar collapseOnSelect variant="dark" expand="md" className="NavBar">
       <Navbar.Brand as={NavLink} to="/">
         Jobly
       </Navbar.Brand>

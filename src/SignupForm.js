@@ -1,7 +1,8 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import './SignupForm.css';
 
 const validate = (values) => {
   const errors = {};
@@ -60,74 +61,81 @@ const SignupForm = ({ register }) => {
     }
   });
   return (
-    <Form onSubmit={formik.handleSubmit}>
-      <Form.Label htmlFor="username">Username</Form.Label>
-      <Form.Control
-        id="username"
-        name="username"
-        type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.username}
-      />
-      {formik.touched.username && formik.errors.username ? (
-        <Form.Text className="text-danger">{formik.errors.username}</Form.Text>
-      ) : null}
+    <div className="SignupForm">
+      <Card>
+        <Card.Body>
+          <Card.Title>Sign Up</Card.Title>
+          <Form onSubmit={formik.handleSubmit}>
+            <Form.Label htmlFor="username">Username</Form.Label>
+            <Form.Control
+              id="username"
+              name="username"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.username}
+            />
+            {formik.touched.username && formik.errors.username ? (
+              <Form.Text className="text-danger">{formik.errors.username}</Form.Text>
+            ) : null}
 
-      <Form.Label htmlFor="firstName">First Name</Form.Label>
-      <Form.Control
-        id="firstName"
-        name="firstName"
-        type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.firstName}
-      />
-      {formik.touched.firstName && formik.errors.firstName ? (
-        <Form.Text className="text-danger">{formik.errors.firstName}</Form.Text>
-      ) : null}
+            <Form.Label htmlFor="firstName">First Name</Form.Label>
+            <Form.Control
+              id="firstName"
+              name="firstName"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.firstName}
+            />
+            {formik.touched.firstName && formik.errors.firstName ? (
+              <Form.Text className="text-danger">{formik.errors.firstName}</Form.Text>
+            ) : null}
 
-      <Form.Label htmlFor="lastName">Last Name</Form.Label>
-      <Form.Control
-        id="lastName"
-        name="lastName"
-        type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.lastName}
-      />
-      {formik.touched.lastName && formik.errors.lastName ? (
-        <Form.Text className="text-danger">{formik.errors.lastName}</Form.Text>
-      ) : null}
+            <Form.Label htmlFor="lastName">Last Name</Form.Label>
+            <Form.Control
+              id="lastName"
+              name="lastName"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.lastName}
+            />
+            {formik.touched.lastName && formik.errors.lastName ? (
+              <Form.Text className="text-danger">{formik.errors.lastName}</Form.Text>
+            ) : null}
 
-      <Form.Label htmlFor="email">Email Address</Form.Label>
-      <Form.Control
-        id="email"
-        name="email"
-        type="email"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.email}
-      />
-      {formik.touched.email && formik.errors.email ? (
-        <Form.Text className="text-danger">{formik.errors.email}</Form.Text>
-      ) : null}
+            <Form.Label htmlFor="email">Email Address</Form.Label>
+            <Form.Control
+              id="email"
+              name="email"
+              type="email"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+            />
+            {formik.touched.email && formik.errors.email ? (
+              <Form.Text className="text-danger">{formik.errors.email}</Form.Text>
+            ) : null}
 
-      <Form.Label htmlFor="password">Password</Form.Label>
-      <Form.Control
-        id="password"
-        name="password"
-        type="password"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.password}
-      />
-      {formik.touched.password && formik.errors.password ? (
-        <Form.Text className="text-danger">{formik.errors.password}</Form.Text>
-      ) : null}
+            <Form.Label htmlFor="password">Password</Form.Label>
+            <Form.Control
+              id="password"
+              name="password"
+              type="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.password}
+            />
+            {formik.touched.password && formik.errors.password ? (
+              <Form.Text className="text-danger">{formik.errors.password}</Form.Text>
+            ) : null}
 
-      <Button type="submit">Submit</Button>
-    </Form>
+            <Button type="submit">Submit</Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 

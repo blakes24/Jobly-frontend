@@ -1,0 +1,10 @@
+.CompanyList {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.CompanyList form {
+  display: flex;
+  justify-content: stretch;
+  margin: 10px;
+}

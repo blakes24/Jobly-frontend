@@ -1,0 +1,10 @@
+.JobList {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.JobList form {
+  display: flex;
+  justify-content: stretch;
+  margin: 10px;
+}
