@@ -12,7 +12,7 @@ const JobCard = ({ title, salary, equity, company, id }) => {
         <Card.Title>{title}</Card.Title>
         {company && <Card.Subtitle className="mb-2">{company}</Card.Subtitle>}
         <div className="JobCard-apply">
-          <div JobCard-info>
+          <div className="JobCard-info">
             <Card.Text className="mb-0">Salary: {salary}</Card.Text>
             <Card.Text>Equity: {equity}</Card.Text>
           </div>

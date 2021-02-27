@@ -58,9 +58,7 @@ const Profile = ({ update }) => {
         <Card.Body>
           <Card.Title>Update Profile</Card.Title>
           <Form onSubmit={formik.handleSubmit}>
-            <Form.Label inline htmlFor="username">
-              Username
-            </Form.Label>
+            <Form.Label htmlFor="username">Username</Form.Label>
             <Form.Control
               plaintext
               readOnly

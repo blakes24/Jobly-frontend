@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="SignupForm"
+  >
+    <div
+      class="card"
+    >
+      <div
+        class="card-body"
+      >
+        <div
+          class="card-title h5"
+        >
+          Update Profile
+        </div>
+        <form
+          class=""
+        >
+          <label
+            class="form-label"
+            for="username"
+          >
+            Username
+          </label>
+          <input
+            class="text-secondary form-control-plaintext"
+            id="username"
+            name="username"
+            readonly=""
+            type="text"
+            value="testuser"
+          />
+          <label
+            class="form-label"
+            for="firstName"
+          >
+            First Name
+          </label>
+          <input
+            class="form-control"
+            id="firstName"
+            name="firstName"
+            type="text"
+            value="Test"
+          />
+          <label
+            class="form-label"
+            for="lastName"
+          >
+            Last Name
+          </label>
+          <input
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            type="text"
+            value="User"
+          />
+          <label
+            class="form-label"
+            for="email"
+          >
+            Email Address
+          </label>
+          <input
+            class="form-control"
+            id="email"
+            name="email"
+            type="email"
+            value="joel@joelburton.com"
+          />
+          <label
+            class="form-label"
+            for="password"
+          >
+            Confirm password to make changes
+          </label>
+          <input
+            class="form-control"
+            id="password"
+            name="password"
+            type="password"
+            value=""
+          />
+          <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
