@@ -1,5 +1,6 @@
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './CompanyCard.css';
 
 const CompanyCard = ({ name, description, logoUrl, handle }) => {
   return (

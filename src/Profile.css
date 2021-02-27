@@ -1,0 +1,32 @@
+.Profile .card-title {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.Profile .card {
+  -webkit-box-shadow: 5px 5px 10px 2px lightgrey;
+  box-shadow: 3px 3px 10px 2px lightgrey;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 15vh;
+}
+
+.Profile form {
+  padding: 1rem;
+}
+
+.Profile .form-label {
+  margin: 10px 0 5px;
+}
+
+.Profile .btn {
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .Profile .card {
+    margin-top: 1rem;
+    box-shadow: none;
+    border: none;
+  }
+}

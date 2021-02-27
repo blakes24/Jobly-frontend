@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCard from './JobCard';
+import './CompanyDetail.css';
 
 const CompanyDetail = () => {
   const [ company, setCompany ] = useState(null);
@@ -21,13 +22,15 @@ const CompanyDetail = () => {
   );
 
   return (
-    <div>
+    <div className="CompanyDetail">
       {isLoading ? (
         <h2>Loading...</h2>
       ) : (
         <div>
-          <h1>{company.name}</h1>
-          <p>{company.description}</p>
+          <div className="CompanyDetail-heading">
+            <h1>{company.name}</h1>
+            <p>{company.description}</p>
+          </div>
           <div>
             {company.jobs.map((job) => (
               <JobCard title={job.title} salary={job.salary} equity={job.equity} id={job.id} key={job.id} />

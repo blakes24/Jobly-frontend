@@ -1,6 +1,7 @@
 import { Card, Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import UserContext from './UserContext';
+import './JobCard.css';
 
 const JobCard = ({ title, salary, equity, company, id }) => {
   const { user, apply } = useContext(UserContext);
@@ -10,11 +11,15 @@ const JobCard = ({ title, salary, equity, company, id }) => {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         {company && <Card.Subtitle className="mb-2">{company}</Card.Subtitle>}
-        <Card.Text className="mb-0">Salary: {salary}</Card.Text>
-        <Card.Text>Equity: {equity}</Card.Text>
-        <Button onClick={() => apply(id)} disabled={applied}>
-          Apply
-        </Button>
+        <div className="JobCard-apply">
+          <div JobCard-info>
+            <Card.Text className="mb-0">Salary: {salary}</Card.Text>
+            <Card.Text>Equity: {equity}</Card.Text>
+          </div>
+          <Button onClick={() => apply(id)} disabled={applied}>
+            {applied ? 'Applied' : 'Apply'}
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );

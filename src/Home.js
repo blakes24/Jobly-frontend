@@ -1,13 +1,14 @@
 import { useContext } from 'react';
 import UserContext from './UserContext';
+import './Home.css';
 
 const Home = () => {
   const { user } = useContext(UserContext);
   return (
-    <div>
+    <div className="Home">
       <h1>Jobly</h1>
-      <p>Find your next job.</p>
-      {user && <p>Welcome back {user.username}!</p>}
+      <p>The best place to find your next job.</p>
+      {user && <h2 className="Home-welcome">Welcome back {user.username}!</h2>}
     </div>
   );
 };
