@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot logged in 1`] = `
+<DocumentFragment>
+  <nav
+    class="NavBar navbar navbar-expand-md navbar-dark"
+  >
+    <a
+      aria-current="page"
+      class="navbar-brand active"
+      href="/"
+    >
+      Jobly
+    </a>
+    <button
+      aria-controls="navbar-collapse"
+      aria-label="Toggle navigation"
+      class="navbar-toggler collapsed"
+      type="button"
+    >
+      <span
+        class="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      class="justify-content-end navbar-collapse collapse"
+      id="navbar-collapse"
+    >
+      <div
+        class="ml-auto navbar-nav"
+      >
+        <a
+          class="nav-link"
+          data-rb-event-key="1"
+          href="/companies"
+        >
+          Companies
+        </a>
+        <a
+          class="nav-link"
+          data-rb-event-key="2"
+          href="/jobs"
+        >
+          Jobs
+        </a>
+        <a
+          class="nav-link"
+          data-rb-event-key="3"
+          href="/profile"
+        >
+          Profile
+        </a>
+        <a
+          class="nav-link"
+          data-rb-event-key="4"
+          href="/"
+        >
+          Log out testuser
+        </a>
+      </div>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot logged out 1`] = `
+<DocumentFragment>
+  <nav
+    class="NavBar navbar navbar-expand-md navbar-dark"
+  >
+    <a
+      aria-current="page"
+      class="navbar-brand active"
+      href="/"
+    >
+      Jobly
+    </a>
+    <button
+      aria-controls="navbar-collapse"
+      aria-label="Toggle navigation"
+      class="navbar-toggler collapsed"
+      type="button"
+    >
+      <span
+        class="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      class="justify-content-end navbar-collapse collapse"
+      id="navbar-collapse"
+    >
+      <div
+        class="ml-auto navbar-nav"
+      >
+        <a
+          class="nav-link"
+          data-rb-event-key="5"
+          href="/login"
+        >
+          Log In
+        </a>
+        <a
+          class="nav-link"
+          data-rb-event-key="6"
+          href="/signup"
+        >
+          Sign Up
+        </a>
+      </div>
+    </div>
+  </nav>
+</DocumentFragment>
+`;

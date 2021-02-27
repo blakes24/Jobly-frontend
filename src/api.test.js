@@ -26,13 +26,14 @@ describe('getJobs', () => {
   });
 
   test('it works with params', async () => {
-    const res = await JoblyApi.getJobs({ title: 'developer' });
+    const res = await JoblyApi.getJobs('developer');
     expect(res[0]).toHaveProperty('title', 'Applications developer');
   });
 });
 
 describe('getUser', () => {
   test('it gets user info', async () => {
+    JoblyApi.token = process.env.REACT_APP_TOKEN;
     const res = await JoblyApi.getUser('testuser');
     expect(res).toEqual({
       username     : 'testuser',
