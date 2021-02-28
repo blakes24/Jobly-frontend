@@ -26,6 +26,7 @@ exports[`matches snapshot 1`] = `
     <h2>
       Loading...
     </h2>
+    0
   </div>
 </DocumentFragment>
 `;

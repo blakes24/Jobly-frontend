@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
-import { UserProvider } from './testUser';
-import Profile from './Profile';
+import { UserProvider } from '../helpers/testUser';
+import JobList from './JobList';
 
 test('renders without crashing', () => {
   render(
     <UserProvider>
-      <Profile />
+      <JobList />
     </UserProvider>
   );
 });
@@ -13,7 +13,7 @@ test('renders without crashing', () => {
 it('matches snapshot', function() {
   const { asFragment } = render(
     <UserProvider>
-      <Profile />
+      <JobList />
     </UserProvider>
   );
   expect(asFragment()).toMatchSnapshot();

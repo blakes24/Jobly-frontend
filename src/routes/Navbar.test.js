@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
-import { UserProvider } from './testUser';
+import { UserProvider } from '../helpers/testUser';
 import Navbar from './Navbar';
 
 test('renders without crashing', () => {

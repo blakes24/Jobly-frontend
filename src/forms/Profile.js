@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import { Form, Button, Card } from 'react-bootstrap';
-import UserContext from './UserContext';
+import UserContext from '../helpers/UserContext';
 import './Profile.css';
 
 const validate = (values) => {

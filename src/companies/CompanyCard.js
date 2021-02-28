@@ -5,6 +5,7 @@ import './CompanyCard.css';
 const CompanyCard = ({ name, description, logoUrl, handle }) => {
   let url = logoUrl ? logoUrl : '/logos/circle.png';
   const src = require(`.${url}`).default;
+
   return (
     <Card className="CompanyCard">
       <Link to={`/companies/${handle}`}>

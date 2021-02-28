@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Navbar from './Navbar';
-import Home from './Home';
-import JobList from './JobList';
-import CompanyList from './CompanyList';
-import CompanyDetail from './CompanyDetail';
-import LoginForm from './LoginForm';
-import SignupForm from './SignupForm';
-import Profile from './Profile';
-import JoblyApi from './api';
+import Home from '../Home';
+import JobList from '../jobs/JobList';
+import CompanyList from '../companies/CompanyList';
+import CompanyDetail from '../companies/CompanyDetail';
+import LoginForm from '../forms/LoginForm';
+import SignupForm from '../forms/SignupForm';
+import Profile from '../forms/Profile';
+import JoblyApi from '../helpers/api';
 import jwt_decode from 'jwt-decode';
-import UserContext from './UserContext';
-import useLocalStorage from './useLocalStorage';
+import UserContext from '../helpers/UserContext';
+import useLocalStorage from '../helpers/useLocalStorage';
 
 const Routes = () => {
   const [ token, setToken ] = useLocalStorage('token', '');

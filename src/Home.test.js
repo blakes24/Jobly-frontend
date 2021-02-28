@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { UserProvider } from './testUser';
+import { UserProvider } from './helpers/testUser';
 import Home from './Home';
 
 test('renders without crashing', () => {
