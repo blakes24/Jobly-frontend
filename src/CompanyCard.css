@@ -5,6 +5,22 @@
   border-radius: 0;
 }
 
+.CompanyCard-title {
+  display: flex;
+  justify-content: stretch;
+  position: relative;
+}
+
+.CompanyCard-title .card-title {
+  padding-right: 30px;
+}
+
+.CompanyCard-title img {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .CompanyCard a {
   color: black;
 }

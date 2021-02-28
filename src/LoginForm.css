@@ -29,4 +29,9 @@
     box-shadow: none;
     border: none;
   }
+
+  .LoginForm .card-body {
+    background-color: #f1f2f3;
+    font-weight: 500;
+  }
 }

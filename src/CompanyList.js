@@ -78,6 +78,7 @@ const CompanyList = () => {
       ) : (
         <p>No results found</p>
       )}
+      {list.length && <a href="http://www.uilogos.co">Logos Downloaded from uiLogos.co</a>}
     </div>
   );
 };

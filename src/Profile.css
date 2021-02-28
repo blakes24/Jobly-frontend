@@ -1,6 +1,8 @@
 .Profile .card-title {
   font-size: 2rem;
   text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 .Profile .card {
@@ -20,13 +22,28 @@
 }
 
 .Profile .btn {
-  margin-top: 1rem;
+  margin-top: .3rem;
+}
+
+.Profile-message {
+  color: #00992e;
+  margin-top: .5rem;
+  text-align: center;
+  min-height: 16px;
+  line-height: 16px;
 }
 
 @media screen and (max-width: 600px) {
   .Profile .card {
-    margin-top: 1rem;
+    margin-top: .5rem;
     box-shadow: none;
     border: none;
+  }
+  .Profile .card-body {
+    background-color: #f1f2f3;
+    font-weight: 500;
+  }
+  .Profile .card-title {
+    margin-top: 0;
   }
 }
