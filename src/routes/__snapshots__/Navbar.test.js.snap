@@ -8,6 +8,7 @@ exports[`matches snapshot logged in 1`] = `
     <a
       aria-current="page"
       class="navbar-brand active"
+      eventkey="1"
       href="/"
     >
       Jobly
@@ -31,7 +32,7 @@ exports[`matches snapshot logged in 1`] = `
       >
         <a
           class="nav-link"
-          data-rb-event-key="1"
+          data-rb-event-key="7"
           href="/companies"
         >
           Companies
@@ -48,14 +49,14 @@ exports[`matches snapshot logged in 1`] = `
           data-rb-event-key="3"
           href="/profile"
         >
-          Profile
+          testuser
         </a>
         <a
           class="nav-link"
           data-rb-event-key="4"
           href="/"
         >
-          Log out testuser
+          Log out
         </a>
       </div>
     </div>
@@ -71,6 +72,7 @@ exports[`matches snapshot logged out 1`] = `
     <a
       aria-current="page"
       class="navbar-brand active"
+      eventkey="1"
       href="/"
     >
       Jobly
