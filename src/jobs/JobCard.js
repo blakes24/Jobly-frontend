@@ -1,6 +1,6 @@
 import { Card, Button } from 'react-bootstrap';
 import { useContext } from 'react';
-import UserContext from './UserContext';
+import UserContext from '../helpers/UserContext';
 import './JobCard.css';
 
 const JobCard = ({ title, salary, equity, company, id }) => {

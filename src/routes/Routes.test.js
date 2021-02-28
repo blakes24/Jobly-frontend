@@ -1,9 +1,9 @@
 import { render, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import Routes from './Routes';
-import JoblyApi from './api';
+import JoblyApi from '../helpers/api';
 
-jest.mock('./api');
+jest.mock('../helpers/api');
 jest.mock('jwt-decode', () => () => testUser);
 
 afterEach(() => {

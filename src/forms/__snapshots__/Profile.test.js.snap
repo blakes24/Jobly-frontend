@@ -3,7 +3,7 @@
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="SignupForm"
+    class="Profile"
   >
     <div
       class="card"
@@ -85,6 +85,11 @@ exports[`matches snapshot 1`] = `
             type="password"
             value=""
           />
+          <div
+            class="Profile-message"
+          >
+             
+          </div>
           <button
             class="btn btn-primary"
             type="submit"

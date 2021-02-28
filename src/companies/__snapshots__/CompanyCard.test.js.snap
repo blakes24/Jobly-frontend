@@ -12,11 +12,14 @@ exports[`matches snapshot 1`] = `
         class="card-body"
       >
         <div
-          class="card-title h5"
+          class="CompanyCard-title"
         >
-           
+          <div
+            class="card-title h5"
+          />
           <img
             alt="logo"
+            height="25px"
           />
         </div>
         <p

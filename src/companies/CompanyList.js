@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import JoblyApi from './api';
-import JobCard from './JobCard';
-import './JobList.css';
+import JoblyApi from '../helpers/api';
+import CompanyCard from './CompanyCard';
+import './CompanyList.css';
 
-const JobList = () => {
+const CompanyList = () => {
   const [ list, setList ] = useState([]);
   const [ isLoading, setIsLoading ] = useState(true);
   const [ formData, setFormData ] = useState({ search: '' });
 
-  // get jobs when page loads and add to state
+  // get companies when page loads and add to state
   useEffect(() => {
     async function getList() {
-      const list = await JoblyApi.getJobs();
+      const list = await JoblyApi.getCompanies();
       setList(list);
       setIsLoading(false);
     }
@@ -20,7 +20,7 @@ const JobList = () => {
   }, []);
 
   async function filter(params) {
-    const list = await JoblyApi.getJobs(params);
+    const list = await JoblyApi.getCompanies(params);
     setList(list);
   }
 
@@ -35,7 +35,7 @@ const JobList = () => {
   // Filter list based on search term
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    // if search is empty reset and get all jobs
+    // if search is empty reset and get all companies
     if (formData.search.trim().length < 1) {
       setFormData((formData) => ({
         ...formData,
@@ -48,7 +48,7 @@ const JobList = () => {
   };
 
   return (
-    <div className="JobList">
+    <div className="CompanyList">
       <Form onSubmit={handleSubmit}>
         <Form.Control
           className="my-2"
@@ -66,21 +66,21 @@ const JobList = () => {
       {isLoading ? (
         <h2>Loading...</h2>
       ) : list.length ? (
-        list.map((job) => (
-          <JobCard
-            company={job.companyName}
-            title={job.title}
-            salary={job.salary}
-            equity={job.equity}
-            id={job.id}
-            key={job.id}
+        list.map((company) => (
+          <CompanyCard
+            name={company.name}
+            description={company.description}
+            logoUrl={company.logoUrl}
+            handle={company.handle}
+            key={company.handle}
           />
         ))
       ) : (
         <p>No results found</p>
       )}
+      {list.length && <a href="http://www.uilogos.co">Logos Downloaded from uiLogos.co</a>}
     </div>
   );
 };
 
-export default JobList;
+export default CompanyList;

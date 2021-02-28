@@ -1,7 +1,7 @@
 import { NavLink, Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import React, { useContext } from 'react';
-import UserContext from './UserContext';
+import UserContext from '../helpers/UserContext';
 import './NavBar.css';
 
 const NavBar = ({ logout }) => {
