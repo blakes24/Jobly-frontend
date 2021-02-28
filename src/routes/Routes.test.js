@@ -172,7 +172,7 @@ it('shows profile page when logged in', async function() {
 
   expect(await findByText('Welcome back testuser!')).toBeInTheDocument();
 
-  fireEvent.click(getByText('Profile'));
+  fireEvent.click(getByText('testuser'));
 
   expect(getByText('Update Profile')).toBeInTheDocument();
 });

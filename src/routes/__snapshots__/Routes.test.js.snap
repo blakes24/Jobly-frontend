@@ -8,6 +8,7 @@ exports[`matches snapshot 1`] = `
     <a
       aria-current="page"
       class="navbar-brand active"
+      eventkey="1"
       href="/"
     >
       Jobly
