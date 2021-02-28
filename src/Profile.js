@@ -44,16 +44,17 @@ const Profile = ({ update }) => {
       password  : ''
     },
     validate,
-    onSubmit      : async (values) => {
+    onSubmit      : async (values, actions) => {
       try {
         await update(values);
+        actions.setStatus({ message: 'Profile Updated' });
       } catch (err) {
         formik.errors.password = err;
       }
     }
   });
   return (
-    <div className="SignupForm">
+    <div className="Profile">
       <Card>
         <Card.Body>
           <Card.Title>Update Profile</Card.Title>
@@ -123,6 +124,10 @@ const Profile = ({ update }) => {
             {formik.touched.password && formik.errors.password ? (
               <Form.Text className="text-danger">{formik.errors.password}</Form.Text>
             ) : null}
+
+            <div className="Profile-message">
+              {formik.status && formik.status.message ? formik.status.message : ' '}
+            </div>
 
             <Button type="submit">Submit</Button>
           </Form>

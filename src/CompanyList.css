@@ -8,3 +8,8 @@
   justify-content: stretch;
   margin: 10px;
 }
+
+.CompanyList > a {
+  margin: 10px;
+  font-size: x-small;
+}
