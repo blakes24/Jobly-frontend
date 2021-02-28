@@ -12,5 +12,5 @@ npm start
 
 ### Run tests
 ```
-npm start
+npm test
 ```
