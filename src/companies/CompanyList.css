@@ -13,3 +13,9 @@
   margin: 10px;
   font-size: x-small;
 }
+
+.CompanyList .spinner-border {
+  display: block;
+  margin: 100px auto;
+  color: #015dc0;
+}

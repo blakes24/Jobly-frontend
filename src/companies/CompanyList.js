@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Spinner } from 'react-bootstrap';
 import JoblyApi from '../helpers/api';
 import CompanyCard from './CompanyCard';
 import './CompanyList.css';
@@ -64,7 +64,9 @@ const CompanyList = () => {
         </Button>
       </Form>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
       ) : list.length ? (
         list.map((company) => (
           <CompanyCard
@@ -78,7 +80,7 @@ const CompanyList = () => {
       ) : (
         <p>No results found</p>
       )}
-      {list.length && <a href="http://www.uilogos.co">Logos Downloaded from uiLogos.co</a>}
+      {list.length > 0 && <a href="http://www.uilogos.co">Logos Downloaded from uiLogos.co</a>}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Spinner } from 'react-bootstrap';
 import JoblyApi from '../helpers/api';
 import JobCard from './JobCard';
 import './JobList.css';
@@ -64,7 +64,9 @@ const JobList = () => {
         </Button>
       </Form>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
       ) : list.length ? (
         list.map((job) => (
           <JobCard
