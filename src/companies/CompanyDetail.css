@@ -14,3 +14,9 @@
 .CompanyDetail-heading p {
   font-size: 0.9rem;
 }
+
+.CompanyDetail .spinner-border {
+  display: block;
+  margin: 100px auto;
+  color: #015dc0;
+}
