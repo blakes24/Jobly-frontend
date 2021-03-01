@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Spinner } from 'react-bootstrap';
 import JoblyApi from '../helpers/api';
 import JobCard from '../jobs/JobCard';
 import './CompanyDetail.css';
@@ -24,7 +25,9 @@ const CompanyDetail = () => {
   return (
     <div className="CompanyDetail">
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
       ) : (
         <div>
           <div className="CompanyDetail-heading">
