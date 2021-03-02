@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
+exports[`logged out views matches snapshot 1`] = `
 <DocumentFragment>
   <nav
     class="NavBar navbar navbar-expand-md navbar-dark"
@@ -8,7 +8,6 @@ exports[`matches snapshot 1`] = `
     <a
       aria-current="page"
       class="navbar-brand active"
-      eventkey="1"
       href="/"
     >
       Jobly

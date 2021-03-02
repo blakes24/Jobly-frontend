@@ -8,7 +8,7 @@ const NavBar = ({ logout }) => {
   const { user } = useContext(UserContext);
   const loggedIn = (
     <Nav className="ml-auto">
-      <Nav.Link as={NavLink} eventKey="7" to="/companies">
+      <Nav.Link as={NavLink} eventKey="1" to="/companies">
         Companies
       </Nav.Link>
       <Nav.Link as={NavLink} eventKey="2" to="/jobs">
@@ -36,7 +36,7 @@ const NavBar = ({ logout }) => {
 
   return (
     <Navbar collapseOnSelect variant="dark" expand="md" className="NavBar">
-      <Navbar.Brand as={NavLink} eventKey="1" to="/">
+      <Navbar.Brand as={NavLink} to="/">
         Jobly
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="navbar-collapse" />

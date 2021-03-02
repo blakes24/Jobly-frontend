@@ -31,20 +31,20 @@ describe('getJobs', () => {
   });
 });
 
-describe('getUser', () => {
-  test('it gets user info', async () => {
-    JoblyApi.token = process.env.REACT_APP_TOKEN;
-    const res = await JoblyApi.getUser('testuser');
-    expect(res).toEqual({
-      username     : 'testuser',
-      firstName    : 'Test',
-      lastName     : 'User',
-      email        : 'joel@joelburton.com',
-      isAdmin      : false,
-      applications : []
-    });
-  });
-});
+// describe('getUser', () => {
+//   test('it gets user info', async () => {
+//     JoblyApi.token = process.env.REACT_APP_TOKEN;
+//     const res = await JoblyApi.getUser('testuser');
+//     expect(res).toEqual({
+//       username     : 'testuser',
+//       firstName    : 'Test',
+//       lastName     : 'User',
+//       email        : 'joel@joelburton.com',
+//       isAdmin      : false,
+//       applications : []
+//     });
+//   });
+// });
 
 describe('login', () => {
   test('it gets user info', async () => {
