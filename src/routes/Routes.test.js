@@ -1,14 +1,10 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import Routes from './Routes';
 import JoblyApi from '../helpers/api';
 
 jest.mock('../helpers/api');
 jest.mock('jwt-decode', () => () => testUser);
-
-afterEach(() => {
-  jest.resetAllMocks();
-});
 
 const token = process.env.REACT_APP_TOKEN;
 
@@ -21,158 +17,219 @@ const testUser = {
   applications : []
 };
 
-test('renders without crashing', () => {
-  render(
-    <MemoryRouter>
-      <Routes />
-    </MemoryRouter>
-  );
-});
+const testJob = {
+  id            : 7,
+  title         : 'Technical brewer',
+  salary        : 157000,
+  equity        : '0',
+  companyHandle : 'anderson-arias-morrow'
+};
 
-it('matches snapshot', function() {
-  const { asFragment } = render(
-    <MemoryRouter>
-      <Routes />
-    </MemoryRouter>
-  );
-  expect(asFragment()).toMatchSnapshot();
-});
+const testCompany = {
+  handle       : 'anderson-arias-morrow',
+  name         : 'Anderson, Arias and Morrow',
+  description  :
+    'Somebody program how I. Face give away discussion view act inside. Your official relationship administration here.',
+  numEmployees : 245,
+  logoUrl      : '/logos/logo3.png'
+};
 
-it('displays homepage', function() {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={[ '/' ]}>
-      <Routes />
-    </MemoryRouter>
-  );
-  expect(getByText(`The best place to find your next job.`)).toBeInTheDocument();
-});
-
-it('redirects protected route to home if user is not logged in', function() {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={[ '/jobs' ]}>
-      <Routes />
-    </MemoryRouter>
-  );
-  expect(getByText(`The best place to find your next job.`)).toBeInTheDocument();
-});
-
-it('lets a user log in', async function() {
+beforeEach(() => {
   JoblyApi.login.mockResolvedValue(token);
   JoblyApi.getUser.mockResolvedValue(testUser);
-
-  const { getByText, getByLabelText, findByText, getByRole } = render(
-    <MemoryRouter initialEntries={[ '/' ]}>
-      <Routes />
-    </MemoryRouter>
-  );
-  fireEvent.click(getByText('Log In'));
-
-  expect(getByLabelText(`Username`)).toBeInTheDocument();
-
-  fireEvent.input(getByLabelText('Username'), {
-    target : { value: 'testuser' }
-  });
-  fireEvent.input(getByLabelText('Password'), {
-    target : { value: 'password' }
-  });
-  fireEvent.submit(getByRole('button', { name: 'Log In' }));
-
-  expect(await findByText('Welcome back testuser!')).toBeInTheDocument();
+  JoblyApi.getJobs.mockResolvedValue([ testJob ]);
+  JoblyApi.applyToJob.mockResolvedValue(testJob.id);
+  JoblyApi.getCompanies.mockResolvedValue([ testCompany ]);
+  JoblyApi.getCompany.mockResolvedValue({ ...testCompany, jobs: [ testJob ] });
 });
 
-it('displays signup form when nav link is clicked', function() {
-  const { getByText, getByLabelText } = render(
-    <MemoryRouter initialEntries={[ '/' ]}>
-      <Routes />
-    </MemoryRouter>
-  );
-  fireEvent.click(getByText('Sign Up'));
-
-  expect(getByLabelText(`First Name`)).toBeInTheDocument();
+afterEach(() => {
+  jest.resetAllMocks();
 });
 
-it('shows jobs page when logged in', async function() {
-  JoblyApi.login.mockResolvedValue(token);
-  JoblyApi.getUser.mockResolvedValue(testUser);
-  JoblyApi.getJobs.mockResolvedValue([]);
-
-  const { getByText, getByLabelText, findByText, getByRole } = render(
-    <MemoryRouter initialEntries={[ '/' ]}>
-      <Routes />
-    </MemoryRouter>
-  );
-  fireEvent.click(getByText('Log In'));
-
-  expect(getByLabelText(`Username`)).toBeInTheDocument();
-
-  fireEvent.input(getByLabelText('Username'), {
-    target : { value: 'testuser' }
+describe('logged out views', () => {
+  test('renders without crashing', () => {
+    render(
+      <MemoryRouter>
+        <Routes />
+      </MemoryRouter>
+    );
   });
-  fireEvent.input(getByLabelText('Password'), {
-    target : { value: 'password' }
+
+  it('matches snapshot', function() {
+    const { asFragment } = render(
+      <MemoryRouter>
+        <Routes />
+      </MemoryRouter>
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
-  fireEvent.submit(getByRole('button', { name: 'Log In' }));
 
-  expect(await findByText('Welcome back testuser!')).toBeInTheDocument();
+  it('displays homepage', function() {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={[ '/' ]}>
+        <Routes />
+      </MemoryRouter>
+    );
+    expect(getByText(`The best place to find your next job.`)).toBeInTheDocument();
+  });
 
-  fireEvent.click(getByText('Jobs'));
+  it('redirects protected route to home if user is not logged in', function() {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={[ '/jobs' ]}>
+        <Routes />
+      </MemoryRouter>
+    );
+    expect(getByText(`The best place to find your next job.`)).toBeInTheDocument();
+  });
 
-  expect(getByText('Submit')).toBeInTheDocument();
+  it('displays signup form when nav link is clicked', function() {
+    const { getByText, getByLabelText } = render(
+      <MemoryRouter initialEntries={[ '/' ]}>
+        <Routes />
+      </MemoryRouter>
+    );
+    fireEvent.click(getByText('Sign Up'));
+
+    expect(getByLabelText(`First Name`)).toBeInTheDocument();
+  });
 });
 
-it('shows companies page when logged in', async function() {
-  JoblyApi.login.mockResolvedValue(token);
-  JoblyApi.getUser.mockResolvedValue(testUser);
-  JoblyApi.getCompanies.mockResolvedValue([]);
+describe('logged in views', () => {
+  it('lets a user log in', async function() {
+    const { getByText, getByLabelText, findByText, getByRole } = render(
+      <MemoryRouter initialEntries={[ '/' ]}>
+        <Routes />
+      </MemoryRouter>
+    );
 
-  const { getByText, getByLabelText, findByText, getByRole } = render(
-    <MemoryRouter initialEntries={[ '/' ]}>
-      <Routes />
-    </MemoryRouter>
-  );
-  fireEvent.click(getByText('Log In'));
+    fireEvent.click(getByText('Log In'));
 
-  expect(getByLabelText(`Username`)).toBeInTheDocument();
+    expect(getByLabelText(`Username`)).toBeInTheDocument();
 
-  fireEvent.input(getByLabelText('Username'), {
-    target : { value: 'testuser' }
+    fireEvent.input(getByLabelText('Username'), {
+      target : { value: 'testuser' }
+    });
+
+    fireEvent.input(getByLabelText('Password'), {
+      target : { value: 'password' }
+    });
+
+    fireEvent.submit(getByRole('button', { name: 'Log In' }));
+
+    expect(await findByText('Welcome back testuser!')).toBeInTheDocument();
   });
-  fireEvent.input(getByLabelText('Password'), {
-    target : { value: 'password' }
+
+  it('lets user apply to jobs when logged in', async function() {
+    const { getByText, getByLabelText, findByText, getByRole } = render(
+      <MemoryRouter initialEntries={[ '/' ]}>
+        <Routes />
+      </MemoryRouter>
+    );
+    fireEvent.click(getByText('Log In'));
+
+    expect(getByLabelText(`Username`)).toBeInTheDocument();
+
+    fireEvent.input(getByLabelText('Username'), {
+      target : { value: 'testuser' }
+    });
+
+    fireEvent.input(getByLabelText('Password'), {
+      target : { value: 'password' }
+    });
+
+    fireEvent.submit(getByRole('button', { name: 'Log In' }));
+
+    expect(await findByText('Welcome back testuser!')).toBeInTheDocument();
+
+    fireEvent.click(getByText('Jobs'));
+
+    expect(getByText('Loading...')).toBeInTheDocument();
+    expect(await findByText('Technical brewer')).toBeInTheDocument();
+
+    fireEvent.click(await findByText('Apply'));
+
+    expect(await findByText('Applied')).toBeInTheDocument();
   });
-  fireEvent.submit(getByRole('button', { name: 'Log In' }));
 
-  expect(await findByText('Welcome back testuser!')).toBeInTheDocument();
+  it('shows companies pages when logged in', async function() {
+    const { getByText, getByLabelText, findByText, getByRole } = render(
+      <MemoryRouter initialEntries={[ '/' ]}>
+        <Routes />
+      </MemoryRouter>
+    );
+    fireEvent.click(getByText('Log In'));
 
-  fireEvent.click(getByText('Companies'));
+    expect(getByLabelText(`Username`)).toBeInTheDocument();
 
-  expect(getByText('Submit')).toBeInTheDocument();
-});
+    fireEvent.input(getByLabelText('Username'), {
+      target : { value: 'testuser' }
+    });
+    fireEvent.input(getByLabelText('Password'), {
+      target : { value: 'password' }
+    });
+    fireEvent.submit(getByRole('button', { name: 'Log In' }));
 
-it('shows profile page when logged in', async function() {
-  JoblyApi.login.mockResolvedValue(token);
-  JoblyApi.getUser.mockResolvedValue(testUser);
+    expect(await findByText('Welcome back testuser!')).toBeInTheDocument();
 
-  const { getByText, getByLabelText, findByText, getByRole } = render(
-    <MemoryRouter initialEntries={[ '/' ]}>
-      <Routes />
-    </MemoryRouter>
-  );
-  fireEvent.click(getByText('Log In'));
+    fireEvent.click(getByText('Companies'));
 
-  expect(getByLabelText(`Username`)).toBeInTheDocument();
+    expect(getByText('Loading...')).toBeInTheDocument();
+    let company = await findByText('Anderson, Arias and Morrow');
+    expect(company).toBeInTheDocument();
 
-  fireEvent.input(getByLabelText('Username'), {
-    target : { value: 'testuser' }
+    fireEvent.click(company);
+    expect(await findByText('Technical brewer')).toBeInTheDocument();
   });
-  fireEvent.input(getByLabelText('Password'), {
-    target : { value: 'password' }
+
+  it('shows profile page when logged in', async function() {
+    const { getByText, getByLabelText, findByText, getByRole } = render(
+      <MemoryRouter initialEntries={[ '/' ]}>
+        <Routes />
+      </MemoryRouter>
+    );
+    fireEvent.click(getByText('Log In'));
+
+    expect(getByLabelText(`Username`)).toBeInTheDocument();
+
+    fireEvent.input(getByLabelText('Username'), {
+      target : { value: 'testuser' }
+    });
+    fireEvent.input(getByLabelText('Password'), {
+      target : { value: 'password' }
+    });
+    fireEvent.submit(getByRole('button', { name: 'Log In' }));
+
+    expect(await findByText('Welcome back testuser!')).toBeInTheDocument();
+
+    fireEvent.click(getByText('testuser'));
+
+    expect(getByText('Update Profile')).toBeInTheDocument();
   });
-  fireEvent.submit(getByRole('button', { name: 'Log In' }));
 
-  expect(await findByText('Welcome back testuser!')).toBeInTheDocument();
+  it('lets a user log out', async function() {
+    const { getByText, getByLabelText, findByText, getByRole, queryByText } = render(
+      <MemoryRouter initialEntries={[ '/' ]}>
+        <Routes />
+      </MemoryRouter>
+    );
+    fireEvent.click(getByText('Log In'));
 
-  fireEvent.click(getByText('testuser'));
+    expect(getByLabelText(`Username`)).toBeInTheDocument();
 
-  expect(getByText('Update Profile')).toBeInTheDocument();
+    fireEvent.input(getByLabelText('Username'), {
+      target : { value: 'testuser' }
+    });
+    fireEvent.input(getByLabelText('Password'), {
+      target : { value: 'password' }
+    });
+    fireEvent.submit(getByRole('button', { name: 'Log In' }));
+
+    expect(await findByText('Welcome back testuser!')).toBeInTheDocument();
+
+    fireEvent.click(getByText('Log out'));
+
+    expect(queryByText('Welcome back testuser!')).not.toBeInTheDocument();
+    expect(getByText(`Log In`)).toBeInTheDocument();
+  });
 });
