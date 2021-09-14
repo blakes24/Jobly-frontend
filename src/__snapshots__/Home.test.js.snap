@@ -3,7 +3,7 @@
 exports[`matches snapshot logged in 1`] = `
 <DocumentFragment>
   <div
-    class="Home"
+    class="Home container-fluid"
   >
     <h1>
       Jobly
@@ -23,7 +23,7 @@ exports[`matches snapshot logged in 1`] = `
 exports[`matches snapshot logged out 1`] = `
 <DocumentFragment>
   <div
-    class="Home"
+    class="Home container-fluid"
   >
     <h1>
       Jobly

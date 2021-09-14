@@ -1,9 +1,14 @@
 .Home {
   text-align: center;
-  margin-top: 30vh;
+  background-color: burlywood;
+  height: calc(100vh - 56px);
+  background-image: url("./guy.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .Home h1 {
+  padding-top: 15vh;
   font-size: 3rem;
   font-weight: bold;
   color: #025fc2;
